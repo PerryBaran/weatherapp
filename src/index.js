@@ -2,10 +2,10 @@ import './style.css';
 
 const search = document.getElementById('search')
 
-function getData(location) {
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=d1cad75804f6bd996f5d83905ac66876', {mode: 'cors'})
-    .then(function(response) {
-        console.log(response.json());
+async function getData(location) {
+    const data = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=metric&APPID=d1cad75804f6bd996f5d83905ac66876', {mode: 'cors'})
+    data.json().then(function(response) {
+        console.log(response);
     });
 }
 

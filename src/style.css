@@ -3,5 +3,33 @@
     margin: auto;
     font-family: Arial, Helvetica, sans-serif;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
-    overflow: hidden;
+    height: 100%;
+}
+
+#search{ 
+    height: 20px;
+    width: 100%;
+}
+
+#infoMain {
+    background-color: red;
+    width: 100%;
+    height: 30%;
+}
+
+h1 {
+    font-size: 8rem;
+    text-align: center;
+    height:fit-content;
+}
+
+p {
+    text-align: center;
+    height:fit-content;
+}
+
+#iconMain{
+    background-color: green;
+    width: 100%;
+    height: 50%;
 }
