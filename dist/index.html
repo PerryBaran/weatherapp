@@ -8,15 +8,28 @@
     <title>Weather App</title>
 </head>
 <body>
-    <input id="search" type='search' value="London">
-    <div id="infoMain">
-        <h1><span id="meanTemp">20</span><span class="units">°C</span></h1>
-        <p>max: <span id="maxTemp">21</span><span class="units">°C</span>
-        min: <span id="minTemp">21</span><span class="units">°C</span></p>
-        <p>humidity:<span id="humidity">80</span>%</p>
+    <h1>Weather App</h1>
+    <input id="search" type="search" value="London">
+    <h2>Country: <span id="country"></span></h2>
+    <div id="mainContainer">
+        <div id="temperature">
+            <div id="inner">
+                <p id="tempMain"><span id="meanTemp"></span>°<span class="units">C</span></p>
+                <p id="tempLike">feels like: <span id="feelsLike"></span>°<span class="units">C</span></p>
+            </div>
+        </div>
+        <img src='' id="icon">
     </div>
-    <div id="iconMain">
-
+    <div id="moreInfo">
+        <p id="description"></p>
+        <div id="info">
+            <p>Min Temp: <span id="minTemp"></span>°<span class="units">C</span></p>
+            <p>Max Temp: <span id="maxTemp"></span>°<span class="units">C</span></p>
+            <p>Humidity: <span id="humidity"></span>%</p>
+            <p>Cloud Coverage: <span id="clouds"></span>%</p>
+            <p>Wind Speed: <span id="wind"></span><span class="speed">m/s</span></p>
+        </div>
     </div>
+    <button id="switchUnits">Metric</button>
 </body>
 </html>
