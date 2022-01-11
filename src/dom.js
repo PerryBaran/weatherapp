@@ -12,7 +12,7 @@ const wind = document.getElementById('wind');
 export function updateMain(data) {
     meanTemp.innerHTML = data.main.temp;
     feelsLike.innerHTML = data.main.feels_like;
-    mainIcon.src = 'http://openweathermap.org/img/wn/' + data.weather[0].icon + '@4x.png'
+    mainIcon.src = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@4x.png'
     country.innerHTML = data.sys.country;
     description.innerHTML = data.weather[0].description;
     minTemp.innerHTML = data.main.temp_min;
@@ -65,7 +65,7 @@ export function updateForecast(data, units) {
             container.appendChild(temp);
 
             const icon = document.createElement('img');
-            icon.src = 'http://openweathermap.org/img/wn/' + data[i].weather[0].icon + '@2x.png'
+            icon.src = 'https://openweathermap.org/img/wn/' + data[i].weather[0].icon + '@2x.png'
             icon.className = 'forecastIcon'
             container.appendChild(icon);
 
