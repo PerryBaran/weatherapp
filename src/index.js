@@ -37,7 +37,6 @@ switchUnits.addEventListener('click' ,() => {
 async function getForecast(location, units) {
         const data = await fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + location + '&units=' + units + '&APPID=d1cad75804f6bd996f5d83905ac66876', {mode: 'cors'})
         data.json().then(function(response) {
-            console.log(response.list);
             updateForecast(response.list, units);
         });
 }
