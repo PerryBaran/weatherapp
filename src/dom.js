@@ -57,21 +57,28 @@ export function updateForecast(data, units) {
     for (let i = 0; i < data.length; i++) {
         if (data[i].dt_txt.slice(8, 10) != dd && data[i].dt_txt.slice(11, 13) == '12') { //filtering out today's date and only showing data for midday
             const container = document.createElement('div');
+            container.className = 'forecastItem'
             
             const temp = document.createElement('p');
             temp.innerHTML = data[i].main.temp + unit;
+            temp.className = 'forecastTemp'
             container.appendChild(temp);
 
             const icon = document.createElement('img');
             icon.src = 'http://openweathermap.org/img/wn/' + data[i].weather[0].icon + '@2x.png'
+            icon.className = 'forecastIcon'
             container.appendChild(icon);
 
             const iconDescription = document.createElement('p');
             iconDescription.innerHTML = data[i].weather[0].description
+            iconDescription.className = 'ForecastDescription'
             container.appendChild(iconDescription);
 
             const date = document.createElement('p');
             date.innerHTML = getDate(data[i].dt_txt, dd, today)
+            date.className = 'forecastDate'
+            container.appendChild(date);
+
             forecastContainer.appendChild(container);
         } 
     }
@@ -90,11 +97,23 @@ function getDate(data, day, today) {
     //get day
     const dd = data.slice(8, 10); //day as dd
     const dayName = dayOfWeek[determineDay(dd, day, today)]
+    //determine ordinal
+    let ordinal = ''
+    if (dd == 1 || dd == 21 || dd == 31) {
+        ordinal = 'st';
+    } else if (dd == 2 || dd == 22) {
+        ordinal = 'nd';
+    } else if (dd == 3 || dd == 23) {
+        ordinal = 'rd';
+    } else {
+        ordinal = 'th';
+    };
     //get month
     const mm = month[parseInt(data.slice(5, 7)) - 1] //month as shorthand
     //get year
     const yyyy = data.slice(0, 4); //year as yyyy
     //make into string
+    return dayName + ',<br>' + dd + '<sup>' + ordinal + '</sup> ' + mm + ' ' + yyyy;
 }
 
 function determineDay(targetDD, todayDD, todayDate) {
