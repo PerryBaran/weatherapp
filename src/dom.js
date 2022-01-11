@@ -26,7 +26,6 @@ const units = Array.from(document.getElementsByClassName('units'));
 const speed = Array.from(document.getElementsByClassName('speed'));
 
 export function changeUnits(data) {
-    console.log(units);
     if (data === 'metric') {
         for (let i = 0; i < units.length; i++) {
             units[i].innerHTML = 'C';
@@ -41,3 +40,68 @@ export function changeUnits(data) {
         }
     }
 };
+
+const forecastContainer = document.getElementById('forecast');
+
+export function updateForecast(data, units) {
+    var unit = '°C';
+    if (units === 'metric') {
+        unit = '°C'
+    } else {
+        unit = '°F'
+    }
+    reset(forecastContainer);
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].dt_txt.slice(8, 10) != dd && data[i].dt_txt.slice(11, 13) == '12') { //filtering out today's date and only showing data for midday
+            const container = document.createElement('div');
+            
+            const temp = document.createElement('p');
+            temp.innerHTML = data[i].main.temp + unit;
+            container.appendChild(temp);
+
+            const icon = document.createElement('img');
+            icon.src = 'http://openweathermap.org/img/wn/' + data[i].weather[0].icon + '@2x.png'
+            container.appendChild(icon);
+
+            const iconDescription = document.createElement('p');
+            iconDescription.innerHTML = data[i].weather[0].description
+            container.appendChild(iconDescription);
+
+            const date = document.createElement('p');
+            date.innerHTML = getDate(data[i].dt_txt, dd, today)
+            forecastContainer.appendChild(container);
+        } 
+    }
+}
+
+function reset(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
+const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const month = ['Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.', 'Jul.', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.']
+
+function getDate(data, day, today) {
+    //get day
+    const dd = data.slice(8, 10); //day as dd
+    const dayName = dayOfWeek[determineDay(dd, day, today)]
+    //get month
+    const mm = month[parseInt(data.slice(5, 7)) - 1] //month as shorthand
+    //get year
+    const yyyy = data.slice(0, 4); //year as yyyy
+    //make into string
+}
+
+function determineDay(targetDD, todayDD, todayDate) {
+    const difference = targetDD - todayDD;
+    let dayName = todayDate.getDay() + difference
+    if (dayName > 6) {
+        dayName = dayName - 7;
+    }
+    return parseInt(dayName);
+}

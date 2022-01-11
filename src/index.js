@@ -1,14 +1,14 @@
 import './style.css';
-import { updateMain, changeUnits } from './dom';
+import { updateMain, updateForecast, changeUnits } from './dom';
 
-const search = document.getElementById('search')
+const searchBox = document.getElementById('searchBox')
+const searchButton = document.getElementById('searchButton')
 var units = 'metric';
 
-async function getData(location, units) {
+async function getWeather(location, units) {
     try {
         const data = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&units=' + units + '&APPID=d1cad75804f6bd996f5d83905ac66876', {mode: 'cors'})
         data.json().then(function(response) {
-            console.log(response)
             updateMain(response);
         });
     } catch (error) {
@@ -16,10 +16,8 @@ async function getData(location, units) {
     }
 }
 
-getData(search.value, units);
-
-search.addEventListener('change', () => {
-    getData(search.value, units);
+searchButton.addEventListener('click', () => {
+    getData();
 });
 
 const switchUnits = document.getElementById('switchUnits');
@@ -27,11 +25,26 @@ const switchUnits = document.getElementById('switchUnits');
 switchUnits.addEventListener('click' ,() => {
     if (units === 'metric') {
         units = 'imperial';
-        switchUnits.innerHTML = 'Imperial'
+        switchUnits.innerHTML = 'IMPERIAL'
     } else {
         units = 'metric';
-        switchUnits.innerHTML = 'Metric'
+        switchUnits.innerHTML = 'METRIC'
     }
-    getData(search.value, units)
+    getData();
     changeUnits(units);
 });
+
+async function getForecast(location, units) {
+        const data = await fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + location + '&units=' + units + '&APPID=d1cad75804f6bd996f5d83905ac66876', {mode: 'cors'})
+        data.json().then(function(response) {
+            console.log(response.list);
+            updateForecast(response.list, units);
+        });
+}
+
+function getData () {
+    getWeather(searchBox.value, units);
+    getForecast(searchBox.value, units);
+}
+
+getData();
