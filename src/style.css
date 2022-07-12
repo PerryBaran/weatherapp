@@ -4,7 +4,9 @@
     font-family: Arial, Helvetica, sans-serif;
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     height: 100%;
-    background: linear-gradient(var(--light-blue), var(--dark-blue));
+    background-image: url("images/Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     color: white;
     font-weight: bold;
     overflow: hidden;
@@ -45,7 +47,7 @@ p {
     height: inherit;
 }
 
-a {
+.github {
     display: inline-flex;
     position: absolute;
     right: 10px;
@@ -221,4 +223,20 @@ a {
 sup {
     background: none;
     color: var(--light-blue);
+}
+
+.attribution {
+    position: absolute;
+    background: none;
+    height: 50px;
+    bottom: 130px;
+    right: 5px;
+    z-index: 200;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.attribution > a {
+    background: none;
+    color: inherit;
 }
