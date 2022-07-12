@@ -8,38 +8,41 @@
     <title>Weather App</title>
 </head>
 <body>
-    <div id="topBanner">
+    <header id="topBanner">
         <h1>Weather App</h1>
-        <a href = "https://github.com/Squilly-flac">Perry Baran © 2021</a>
-    </div>
-    <div id="search">
-        <input id="searchBox" type="search" value="London">
-        <button id="searchButton">SEARCH</button>
-    </div>
-    <h2>COUNTRY <br><span id="country"></span></h2>
-    <div id="mainContainer">
-        <div id="temperature">
-            <div id="inner">
-                <p id="tempMain"><span id="meanTemp"></span>°<span class="units">C</span></p>
-                <p id="tempLike">feels like: <span id="feelsLike"></span>°<span class="units">C</span></p>
+        <a href = "https://github.com/Squilly-flac" class="github">Perry Baran © 2021</a>
+    </header>
+    <main>
+        <div id="search">
+            <input id="searchBox" type="search" value="London">
+            <button id="searchButton">SEARCH</button>
+        </div>
+        <h2>COUNTRY <br><span id="country"></span></h2>
+        <div id="mainContainer">
+            <div id="temperature">
+                <div id="inner">
+                    <p id="tempMain"><span id="meanTemp"></span>°<span class="units">C</span></p>
+                    <p id="tempLike">feels like: <span id="feelsLike"></span>°<span class="units">C</span></p>
+                </div>
+            </div>
+            <div id='iconDescription'>
+                <img src='' id="icon">
+                <p id="description"></p>
             </div>
         </div>
-        <div id='iconDescription'>
-            <img src='' id="icon">
-            <p id="description"></p>
+        <div id="moreInfo">
+            <p class="header">MIN TEMP <br><span id="minTemp"></span><span>°</span><span class="units">C</span></p>
+            <p class="header">MAX TEMP<br><span id="maxTemp"></span><span>°</span><span class="units">C</span></p>
+            <p class="header">HUMIDITY<br><span id="humidity"></span><span>%</span></p>
+            <p class="header">CLOUD COVERAGE<br><span id="clouds"></span><span>%</span></p>
+            <p class="header">WIND SPEED<br><span id="wind"></span><span class="speed">m/s</span></p>
+            <button id="switchUnits">METRIC</button>
         </div>
-    </div>
-    <div id="moreInfo">
-        <p class="header">MIN TEMP <br><span id="minTemp"></span><span>°</span><span class="units">C</span></p>
-        <p class="header">MAX TEMP<br><span id="maxTemp"></span><span>°</span><span class="units">C</span></p>
-        <p class="header">HUMIDITY<br><span id="humidity"></span><span>%</span></p>
-        <p class="header">CLOUD COVERAGE<br><span id="clouds"></span><span>%</span></p>
-        <p class="header">WIND SPEED<br><span id="wind"></span><span class="speed">m/s</span></p>
-        <button id="switchUnits">METRIC</button>
-    </div>
-    <div id="forecastOuter">
-        <div id="forecast">
-        </div>
-    </div>
+        <p class="attribution">Photo by <a href="https://unsplash.com/@oemartinez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Oswaldo Martinez</a></p>
+    </a>
+    </main>
+    <footer id="forecastOuter">
+        <div id="forecast"></div>
+    </footer>
 </body>
 </html>
